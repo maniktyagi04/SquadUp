@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap');
 
 :root {
-  --bg-primary: #0a0b0e;
-  --bg-secondary: #12141c;
-  --bg-tertiary: #181a24;
-  --accent-color: #8c52ff;
-  --text-primary: #ffffff;
-  --text-secondary: #9aa0b0;
-  --border-color: #222533;
+  --bg-primary: #0B0F1A;
+  --bg-secondary: #111827;
+  --bg-tertiary: #1F2937;
+  --accent-color: #8B5CF6; /* Primary */
+  --secondary-color: #00F5D4; /* Secondary */
+  --text-primary: #F9FAFB;
+  --text-secondary: #9CA3AF;
+  --border-color: #1F2937;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
@@ -39,6 +40,7 @@ body {
   cursor: pointer;
   text-decoration: none;
   font-size: 14px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary {
@@ -47,11 +49,23 @@ body {
   border: none;
 }
 
+.btn-primary:hover {
+  background-color: #7c3aed; /* slightly darker purple/violet */
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4);
+  transform: translateY(-1px);
+}
+
 .btn-secondary {
   background-color: transparent;
   color: white;
   border: 1px solid var(--border-color);
   margin-left: 10px;
+}
+
+.btn-secondary:hover {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+  background-color: rgba(0, 245, 212, 0.05);
 }
 
 .navbar-header {
@@ -78,7 +92,7 @@ body {
 }
 
 .logo-accent {
-  color: var(--accent-color);
+  color: var(--secondary-color);
 }
 
 .nav-list {
@@ -413,7 +427,7 @@ section {
 .select-card.active {
   border-color: var(--accent-color);
   background-color: var(--bg-tertiary);
-  box-shadow: 0 0 15px rgba(140, 82, 255, 0.25);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.25);
 }
 
 .select-card-title {
@@ -491,7 +505,7 @@ section {
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 12px;
-  color: var(--accent-color);
+  color: var(--secondary-color);
   font-weight: 600;
 }
 
