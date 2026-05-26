@@ -1,4 +1,4 @@
-const Hero = () => {
+const Hero = ({ onViewChange }) => {
   return (
     <section id="home" className="hero-section">
       <div className="container">
@@ -11,8 +11,12 @@ const Hero = () => {
         </p>
 
         <div>
-          <a href="#how-it-works" className="btn btn-primary">Get Started</a>
-          <a href="#features" className="btn btn-secondary">Learn More</a>
+          <span className="btn btn-primary" style={{ cursor: 'pointer' }} onClick={() => onViewChange('signup')}>
+            Get Started
+          </span>
+          <a href="#features" className="btn btn-secondary">
+            Learn More
+          </a>
         </div>
 
         <div className="hero-stats">
