@@ -6,18 +6,19 @@ const Signup = ({ onViewChange }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const [error, setError] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!username || !email || !password || !confirmPassword) {
-      alert('Please fill in all fields.');
+      setError('Please fill in all fields.');
       return;
     }
     if (password !== confirmPassword) {
-      alert('Passwords do not match.');
+      setError('Passwords do not match.');
       return;
     }
-    alert(`Mock Registration successful!\nUsername: ${username}\nEmail: ${email}`);
-    onViewChange('login');
+    onViewChange('select-game');
   };
 
   return (
@@ -69,6 +70,7 @@ const Signup = ({ onViewChange }) => {
               required
             />
           </div>
+          {error && <p style={{ color: '#ff6b6b', fontSize: '13px', marginTop: '10px' }}>{error}</p>}
           <button type="submit" className="btn btn-primary btn-auth-submit">
             Sign Up
           </button>

@@ -10,8 +10,7 @@ const Login = ({ onViewChange }) => {
       alert('Please fill in all fields.');
       return;
     }
-    alert(`Mock Login successful!\nEmail: ${email}`);
-    onViewChange('landing');
+    onViewChange('select-game');
   };
 
   return (
