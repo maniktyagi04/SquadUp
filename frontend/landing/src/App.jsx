@@ -8,38 +8,62 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import SelectGame from './components/SelectGame';
+import ProfileSetup from './components/ProfileSetup';
 import Dashboard from './components/Dashboard';
 
 function App() {
   const [currentView, setCurrentView] = useState('landing');
   const [selectedGame, setSelectedGame] = useState('');
+  // Track whether the current session started from signup (new user) or login (returning)
+  const [isNewUser, setIsNewUser] = useState(false);
+
+  // Wrapper so child components can set isNewUser before changing view
+  const handleViewChange = (view, newUser = null) => {
+    if (newUser !== null) setIsNewUser(newUser);
+    setCurrentView(view);
+  };
+
+  const hideNav     = currentView === 'dashboard' || currentView === 'profile-setup';
+  const hideFooter  = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'select-game';
 
   return (
     <div className="app-container">
-      {currentView !== 'dashboard' && <Navbar onViewChange={setCurrentView} />}
+      {!hideNav && <Navbar onViewChange={handleViewChange} />}
       <main>
         {currentView === 'landing' && (
           <>
-            <Hero onViewChange={setCurrentView} />
+            <Hero onViewChange={handleViewChange} />
             <Features />
             <Games />
             <HowItWorks />
           </>
         )}
+
         {currentView === 'login' && (
-          <Login onViewChange={setCurrentView} />
+          <Login onViewChange={handleViewChange} />
         )}
+
         {currentView === 'signup' && (
-          <Signup onViewChange={setCurrentView} />
+          <Signup onViewChange={handleViewChange} />
         )}
+
+        {currentView === 'profile-setup' && (
+          <ProfileSetup onViewChange={handleViewChange} />
+        )}
+
         {currentView === 'select-game' && (
-          <SelectGame onSelectGame={setSelectedGame} onViewChange={setCurrentView} />
+          <SelectGame
+            onSelectGame={setSelectedGame}
+            onViewChange={handleViewChange}
+            isNewUser={isNewUser}
+          />
         )}
+
         {currentView === 'dashboard' && (
-          <Dashboard selectedGame={selectedGame} onViewChange={setCurrentView} />
+          <Dashboard selectedGame={selectedGame} onViewChange={handleViewChange} />
         )}
       </main>
-      {currentView !== 'dashboard' && <Footer />}
+      {!hideFooter && <Footer />}
     </div>
   );
 }

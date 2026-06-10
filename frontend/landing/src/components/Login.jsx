@@ -57,7 +57,8 @@ const Login = ({ onViewChange }) => {
       setIsSubmitting(true);
       setTimeout(() => {
         setIsSubmitting(false);
-        onViewChange('select-game');
+        // Returning user — false = show "Previously Visited" tag in SelectGame
+        onViewChange('select-game', false);
       }, 1200);
     },
     [form, onViewChange]

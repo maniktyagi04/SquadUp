@@ -13,17 +13,7 @@ const EyeIcon = ({ open }) =>
     </svg>
   );
 
-const GAMES = [
-  { id: 'valorant', label: '🔫 Valorant' },
-  { id: 'apex', label: '🦊 Apex Legends' },
-  { id: 'fortnite', label: '🏗️ Fortnite' },
-  { id: 'csgo', label: '💣 CS2' },
-  { id: 'lol', label: '⚔️ League of Legends' },
-  { id: 'cod', label: '🪖 Call of Duty' },
-  { id: 'overwatch', label: '🦸 Overwatch 2' },
-  { id: 'other', label: '🎮 Other' },
-];
-
+// Favorite game field removed — game selection happens in dedicated SelectGame page
 const validateField = (name, value, form) => {
   switch (name) {
     case 'username':
@@ -41,9 +31,6 @@ const validateField = (name, value, form) => {
     case 'confirmPassword':
       if (!value) return 'Please confirm your password.';
       if (value !== form.password) return 'Passwords do not match.';
-      return '';
-    case 'favoriteGame':
-      if (!value) return 'Please select your favorite game.';
       return '';
     case 'acceptTerms':
       if (!value) return 'You must accept the Terms & Conditions.';
@@ -95,7 +82,6 @@ const Signup = ({ onViewChange }) => {
     email: '',
     password: '',
     confirmPassword: '',
-    favoriteGame: '',
     acceptTerms: false,
   });
   const [errors, setErrors] = useState({});
@@ -146,7 +132,8 @@ const Signup = ({ onViewChange }) => {
       setIsSubmitting(true);
       setTimeout(() => {
         setIsSubmitting(false);
-        onViewChange('select-game');
+        // New user — goes to profile setup first, then game selection
+        onViewChange('profile-setup', true);
       }, 1400);
     },
     [form, onViewChange]
@@ -297,31 +284,6 @@ const Signup = ({ onViewChange }) => {
             </div>
             {errors.confirmPassword && touched.confirmPassword && (
               <p className="form-error-msg"><span className="error-dot" />{errors.confirmPassword}</p>
-            )}
-          </div>
-
-          {/* Favorite Game */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="signup-game">Favorite Game</label>
-            <div className={`input-wrapper select-wrapper ${getFieldState('favoriteGame') === 'error' ? 'input-error' : getFieldState('favoriteGame') === 'success' ? 'input-success' : ''}`}>
-              <span className="input-icon">🎮</span>
-              <select
-                id="signup-game"
-                name="favoriteGame"
-                className="form-input form-input-icon form-select"
-                value={form.favoriteGame}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              >
-                <option value="">Select your main game…</option>
-                {GAMES.map((g) => (
-                  <option key={g.id} value={g.id}>{g.label}</option>
-                ))}
-              </select>
-              <span className="select-arrow">▾</span>
-            </div>
-            {errors.favoriteGame && touched.favoriteGame && (
-              <p className="form-error-msg"><span className="error-dot" />{errors.favoriteGame}</p>
             )}
           </div>
 
