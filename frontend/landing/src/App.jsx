@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import SelectGame from './components/SelectGame';
 import ProfileSetup from './components/ProfileSetup';
+import SquadFinder from './components/SquadFinder';
 import Dashboard from './components/Dashboard';
 
 function App() {
@@ -23,8 +24,8 @@ function App() {
     setCurrentView(view);
   };
 
-  const hideNav     = currentView === 'dashboard' || currentView === 'profile-setup';
-  const hideFooter  = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'select-game';
+  const hideNav     = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'squad-finder';
+  const hideFooter  = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'select-game' || currentView === 'squad-finder';
 
   return (
     <div className="app-container">
@@ -61,6 +62,10 @@ function App() {
 
         {currentView === 'dashboard' && (
           <Dashboard selectedGame={selectedGame} onViewChange={handleViewChange} />
+        )}
+
+        {currentView === 'squad-finder' && (
+          <SquadFinder onViewChange={handleViewChange} />
         )}
       </main>
       {!hideFooter && <Footer />}

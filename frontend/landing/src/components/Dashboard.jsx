@@ -345,6 +345,9 @@ const Dashboard = ({ selectedGame, onViewChange }) => {
             </div>
           </div>
           <div className="db-banner-actions">
+            <button className="db-banner-btn-outline" onClick={() => onViewChange('squad-finder')} id="db-find-players">
+              🔍 Find Players
+            </button>
             <button className="db-banner-btn-outline" onClick={() => onViewChange('select-game')} id="db-change-game">
               🔄 Switch Game
             </button>
