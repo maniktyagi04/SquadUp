@@ -345,6 +345,9 @@ const Dashboard = ({ selectedGame, onViewChange }) => {
             </div>
           </div>
           <div className="db-banner-actions">
+            <button className="db-banner-btn-outline" onClick={() => onViewChange('friends')} id="db-manage-friends">
+              👥 Manage Friends
+            </button>
             <button className="db-banner-btn-outline" onClick={() => onViewChange('squad-finder')} id="db-find-players">
               🔍 Find Players
             </button>
@@ -435,12 +438,21 @@ const Dashboard = ({ selectedGame, onViewChange }) => {
 
             {/* Friend Requests */}
             <section className="db-section">
-              <h2 className="db-section-title">
-                <span className="db-section-icon">📩</span> Friend Requests
-                {friendRequests.length > 0 && (
-                  <span className="db-notif-dot">{friendRequests.length}</span>
-                )}
-              </h2>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                <h2 className="db-section-title" style={{ margin: 0 }}>
+                  <span className="db-section-icon">📩</span> Friend Requests
+                  {friendRequests.length > 0 && (
+                    <span className="db-notif-dot" style={{ marginLeft: '8px' }}>{friendRequests.length}</span>
+                  )}
+                </h2>
+                <button 
+                  onClick={() => onViewChange('friends')} 
+                  style={{ background: 'none', border: 'none', color: '#a78bfa', fontSize: '12px', fontWeight: 600, cursor: 'pointer' }}
+                  id="db-side-manage-friends"
+                >
+                  Manage ⚙️
+                </button>
+              </div>
               <div className="db-fr-list">
                 {friendRequests.length === 0 ? (
                   <p className="db-empty-msg">No pending requests 🎉</p>

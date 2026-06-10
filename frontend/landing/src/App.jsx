@@ -11,6 +11,7 @@ import SelectGame from './components/SelectGame';
 import ProfileSetup from './components/ProfileSetup';
 import SquadFinder from './components/SquadFinder';
 import Dashboard from './components/Dashboard';
+import Friends from './components/Friends';
 
 function App() {
   const [currentView, setCurrentView] = useState('landing');
@@ -24,8 +25,8 @@ function App() {
     setCurrentView(view);
   };
 
-  const hideNav     = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'squad-finder';
-  const hideFooter  = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'select-game' || currentView === 'squad-finder';
+  const hideNav     = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'squad-finder' || currentView === 'friends';
+  const hideFooter  = currentView === 'dashboard' || currentView === 'profile-setup' || currentView === 'select-game' || currentView === 'squad-finder' || currentView === 'friends';
 
   return (
     <div className="app-container">
@@ -66,6 +67,10 @@ function App() {
 
         {currentView === 'squad-finder' && (
           <SquadFinder onViewChange={handleViewChange} />
+        )}
+
+        {currentView === 'friends' && (
+          <Friends onViewChange={handleViewChange} />
         )}
       </main>
       {!hideFooter && <Footer />}
